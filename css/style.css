@@ -1,0 +1,322 @@
+/* ==========================================================================
+   CV en ligne : feuille de style unique
+   --------------------------------------------------------------------------
+   Pour changer l'apparence du site, modifie d'abord la section 1 (variables).
+   Sommaire :
+     1. Variables (couleurs, typographie, espacements)
+     2. Base (reset, texte, liens)
+     3. Mise en page (conteneur, en-tête, sections, pied de page)
+     4. Composants (boutons, fiches, listes de compétences)
+     5. Page d'accueil (hero)
+     6. Adaptation mobile
+     7. Impression
+   ========================================================================== */
+
+
+/* 1. VARIABLES
+   ========================================================================== */
+:root {
+  /* Couleurs */
+  --c-fond:        #ffffff;
+  --c-fond-alt:    #f2f4f7;   /* bandes de section et pied de page */
+  --c-texte:       #12233f;   /* bleu nuit pour le texte */
+  --c-discret:     #526077;   /* dates, légendes, infos secondaires */
+  --c-bordure:     #d5dbe5;
+  --c-accent:      #0a6b4b;   /* vert : liens, boutons, soulignement du menu */
+  --c-accent-fonce:#07503a;   /* survol */
+
+  /* Typographie : polices système, rien à télécharger */
+  --f-titre: Georgia, "Times New Roman", serif;
+  --f-texte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Espacements */
+  --espace-s: 0.5rem;
+  --espace-m: 1rem;
+  --espace-l: 2rem;
+  --espace-xl: 4rem;
+
+  /* Divers */
+  --largeur-max: 62rem;
+  --rayon: 3px;
+}
+
+
+/* 2. BASE
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--f-texte);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--c-texte);
+  background: var(--c-fond);
+}
+
+h1, h2, h3 {
+  font-family: var(--f-titre);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 var(--espace-s);
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3.1rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.1875rem; }
+
+p { margin: 0 0 var(--espace-m); max-width: 40rem; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+a { color: var(--c-accent); text-underline-offset: 0.18em; }
+a:hover { color: var(--c-accent-fonce); }
+
+:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.lien-evitement {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  padding: var(--espace-s) var(--espace-m);
+  background: var(--c-texte);
+  color: #fff;
+}
+.lien-evitement:focus { left: var(--espace-m); top: var(--espace-s); z-index: 10; }
+
+
+/* 3. MISE EN PAGE
+   ========================================================================== */
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* En-tête et menu */
+.entete { border-bottom: 1px solid var(--c-bordure); }
+
+.entete__interieur {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-s) var(--espace-l);
+  padding-top: var(--espace-m);
+  padding-bottom: var(--espace-m);
+}
+
+.entete__nom {
+  font-family: var(--f-titre);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--c-texte);
+  text-decoration: none;
+}
+
+.menu { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+
+/* .menu li:hover{ 
+  background: rgba(15, 213, 121, 0.6);
+  border-bottom: 2px solid #07503a;
+} */
+
+.menu a {
+  display: block;
+  padding: 0.35rem 0;
+  color: var(--c-discret);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.menu a:hover { 
+  color: var(--c-texte);
+  background: rgba(15, 213, 121, 0.6);
+  border-bottom: 2px solid #07503a;
+}
+.menu a[aria-current="page"] {
+  color: var(--c-texte);
+  font-weight: 600;
+  border-bottom-color: var(--c-accent);
+}
+
+/* Sections : titre à gauche, contenu à droite */
+.section { padding: var(--espace-xl) 0; border-top: 1px solid var(--c-bordure); }
+.section--alt { background: var(--c-fond-alt); }
+.section:first-of-type { border-top: 0; }
+
+.section__grille {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: var(--espace-m) var(--espace-l);
+}
+
+/* En-tête de page secondaire (Projets, Loisirs) */
+.page-titre { padding: var(--espace-xl) 0 var(--espace-l); }
+.page-titre p { color: var(--c-discret); font-size: 1.1875rem; margin-bottom: 0; }
+
+/* Pied de page */
+.pied {
+  padding: var(--espace-xl) 0 var(--espace-l);
+  background: var(--c-fond-alt);
+  border-top: 1px solid var(--c-bordure);
+}
+
+.pied__grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--espace-l);
+}
+
+.pied h2 { font-size: 1.0625rem; }
+.pied li { margin-bottom: 0.3rem; }
+.pied__copyright {
+  margin: var(--espace-l) 0 0;
+  padding-top: var(--espace-m);
+  border-top: 1px solid var(--c-bordure);
+  color: var(--c-discret);
+  font-size: 0.9375rem;
+  max-width: none;
+}
+
+
+/* 4. COMPOSANTS
+   ========================================================================== */
+
+/* Boutons */
+.boutons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: var(--espace-l); }
+
+.bouton {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid var(--c-accent);
+  border-radius: var(--rayon);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--c-accent);
+  background: transparent;
+}
+.bouton:hover { background: var(--c-accent); color: #fff; }
+
+.bouton--plein { background: var(--c-accent); color: #fff; }
+.bouton--plein:hover { background: var(--c-accent-fonce); border-color: var(--c-accent-fonce); }
+
+/* Fiche : une ligne de parcours, d'expérience, de projet ou de loisir.
+   Structure : date (ou rien) à gauche, texte à droite. */
+.fiche {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: var(--espace-s) var(--espace-l);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--c-bordure);
+}
+.fiche:first-child { padding-top: 0; }
+.fiche:last-child { border-bottom: 0; padding-bottom: 0; }
+
+
+.fiche__date {
+  color: var(--c-discret);
+  font-variant-numeric: tabular-nums;
+}
+.fiche__lieu { color: var(--c-discret); margin-bottom: var(--espace-s); }
+.fiche p:last-child { margin-bottom: 0; }
+
+.fiche__actions {
+  margin: 0 0 var(--espace-s);
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+
+.fiche__actions li {
+  margin-bottom: 0.3rem;
+  max-width: 40 rem;
+}
+
+/* Fiche sans colonne de date (projets, loisirs) */
+.fiche--simple { grid-template-columns: 1fr; }
+
+/* Liste de compétences : catégorie à gauche, éléments à droite */
+.competences { margin: 0; }
+.competences > div {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: var(--espace-s) var(--espace-l);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--c-bordure);
+}
+.competences > div:first-child { padding-top: 0; }
+.competences > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.competences dt { font-weight: 600; }
+.competences dd { margin: 0; }
+
+/* Liste de coordonnées */
+.coordonnees { margin: 0; }
+.coordonnees dt { font-weight: 600; margin-top: var(--espace-s); }
+.coordonnees dd { margin: 0; }
+
+
+/* 5. PAGE D'ACCUEIL (hero)
+   ========================================================================== */
+.hero { padding: var(--espace-xl) 0; }
+
+.hero__grille {
+  display: grid;
+  grid-template-columns: 1fr 15rem;
+  gap: var(--espace-l) 3.5rem;
+  align-items: center;
+}
+
+.hero__statut {
+  margin-bottom: var(--espace-m);
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.hero__intro { font-size: 1.1875rem; margin-top: var(--espace-m); }
+
+.hero__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--rayon);
+  border: 1px solid var(--c-bordure);
+}
+
+
+/* 6. ADAPTATION MOBILE
+   ========================================================================== */
+@media (max-width: 760px) {
+  body { font-size: 1rem; }
+
+  .section { padding: 2.5rem 0; }
+  .section__grille { grid-template-columns: 1fr; }
+
+  .fiche,
+  .competences > div { grid-template-columns: 1fr; gap: 0.15rem; }
+
+  .hero { padding: 2.5rem 0; }
+  .hero__grille { grid-template-columns: 1fr; }
+  .hero__photo { max-width: 11rem; order: -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+
+/* 7. IMPRESSION (le site s'imprime comme un CV propre)
+   ========================================================================== */
+@media print {
+  .menu, .boutons, .lien-evitement { display: none; }
+  .section--alt, .pied { background: none; }
+  .section { padding: 1.25rem 0; break-inside: avoid; }
+  a { color: inherit; text-decoration: none; }
+}
