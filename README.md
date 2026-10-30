@@ -1,42 +1,70 @@
 # CV en ligne – Ndoungue Essoh Abel Thomas
 
-Site statique (HTML + CSS, sans JavaScript, sans dépendance). Il se publie tel quel sur GitHub Pages.
+CV interactif présenté sous forme de site web statique, réalisé en HTML et CSS. Le site ne nécessite ni JavaScript ni dépendance externe et peut être publié directement avec GitHub Pages.
 
-## Structure
+## Aperçu du projet
 
+Le site présente le profil professionnel, les compétences, la formation, les expériences, les projets et les loisirs d'Abel Thomas.
+
+## Pages du site
+
+| Page | Contenu |
+| :--- | :--- |
+| `index.html` | Présentation, compétences et formation |
+| `experiences.html` | Expériences professionnelles, stages et projets |
+| `hobbies.html` | Loisirs et centres d'intérêt |
+
+## Structure du projet
+
+```text
+.
+├── index.html
+├── experiences.html
+├── hobbies.html
+├── css/
+│   └── style.css
+├── img/
+│   ├── profil.jpg
+│   └── favicon.svg
+└── doc/
+    └── CV au format PDF
 ```
-index.html          Accueil : présentation, compétences, formation
-experiences.html    Expériences (stages) et projets
-hobbies.html        Loisirs
-css/style.css       Toute la mise en forme (voir le sommaire en haut du fichier)
-img/profil.jpg      Photo de profil (480 x 600 px)
-img/favicon.svg     Icône de l'onglet
-doc/                CV au format PDF
-```
+
+## Technologies utilisées
+
+- HTML5
+- CSS3
+- GitHub Pages
 
 ## Modifier le contenu
 
-| Je veux…                         | Où                                                              |
-|----------------------------------|-----------------------------------------------------------------|
-| Changer une couleur ou la police | `css/style.css`, section 1 « Variables »                        |
-| Ajouter un projet                | `experiences.html` : copier un bloc `<article class="fiche fiche--simple">` |
-| Ajouter une compétence           | `index.html` : modifier la ligne `<dd>` de la catégorie         |
-| Ajouter une formation            | `index.html` : copier un bloc `<article class="fiche">`         |
-| Changer mes coordonnées          | Pied de page, identique dans les 3 fichiers HTML                |
-| Remplacer le CV                  | Remplacer le PDF dans `doc/` en gardant le même nom             |
+| Élément à modifier | Emplacement |
+| :--- | :--- |
+| Couleurs ou police | `css/style.css`, section « Variables » |
+| Nouveau projet | Ajouter une fiche dans `experiences.html` |
+| Nouvelle compétence | Modifier une catégorie `<dd>` dans `index.html` |
+| Nouvelle formation | Ajouter une fiche `<article>` dans `index.html` |
+| Coordonnées | Pied de page commun aux trois pages HTML |
+| CV téléchargeable | Remplacer le PDF dans le dossier `doc/` |
 
-L'en-tête et le pied de page sont répétés dans chaque page : en cas de modification, la refaire dans les 3 fichiers.
+L'en-tête et le pied de page sont répétés dans les trois fichiers HTML. Toute modification globale doit donc être appliquée sur chaque page.
 
-## À compléter avant de rendre le projet
+## Liste des améliorations à finaliser
 
-- [ ] Remplacer les liens « Voir le code sur GitHub » par l'adresse exacte de chaque dépôt (`experiences.html`)
-- [ ] Ajouter ton profil LinkedIn dans le pied de page (modèle déjà en commentaire)
-- [ ] Relire et personnaliser les textes de `hobbies.html`
-- [ ] Ajouter la lettre de recommandation dans `doc/` et un lien vers elle si nécessaire
-- [ ] Remplacer la photo par un portrait de face sur fond neutre si possible
+- [ ] Ajouter des photos illustratives pour les projets
+- [ ] Remplacer la photo actuelle par un portrait de face sur fond neutre
 
-## Publier sur GitHub Pages
+## Publication sur GitHub Pages
 
-1. Copier le contenu de ce dossier à la racine du dépôt (remplacer les anciens fichiers, supprimer l'ancien `style.css` et le dossier `img/` d'origine).
-2. `git add . && git commit -m "Refonte du CV en ligne" && git push`
-3. Dans le dépôt : Settings, Pages, Branch `main` (ou `master`), dossier `/ (root)`.
+1. Versionner et publier les modifications :
+
+   ```bash
+   git add .
+   git commit -m "Refonte du CV en ligne"
+   git push
+   ```
+
+2. Ouvrir les paramètres du dépôt sur GitHub.
+3. Accéder à **Settings > Pages**.
+4. Choisir la branche `main` ou `master` dans le menu **Branch**.
+5. Sélectionner le dossier `/ (root)` puis enregistrer.
